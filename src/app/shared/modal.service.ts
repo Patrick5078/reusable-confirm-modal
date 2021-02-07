@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -15,14 +15,13 @@ export class ModalService {
 
   constructor() { }
 
-  public modalResultEmitter = new EventEmitter<boolean>();
-  public showConfirmModalEmitter = new EventEmitter<Modal>();
-
+  public modalResultSubject = new Subject<boolean>();
+  public showConfirmModalSubject = new Subject<Modal>();
 
   showConfirmModal(modal: Modal) {
-      this.showConfirmModalEmitter.emit(modal);
+      this.showConfirmModalSubject.next(modal);
       
-      return this.modalResultEmitter.pipe(take(1));
+      return this.modalResultSubject.pipe(take(1));
   }
 
 }

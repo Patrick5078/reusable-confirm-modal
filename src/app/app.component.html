@@ -5,14 +5,14 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">{{modal?.title}}</p>
-      <button (click)="modalService.modalResultEmitter.emit(false); showModal = false" class="delete" aria-label="close"></button>
+      <button (click)="modalService.modalResultSubject.next(false); showModal = false" class="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
       {{modal?.body}}
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success" (click)="modalService.modalResultEmitter.emit(true); showModal = false;">{{modal?.confirmText || 'Confirm'}}</button>
-      <button class="button" (click)="modalService.modalResultEmitter.emit(false); showModal = false;">{{modal?.cancelText || 'Cancel'}}</button>
+      <button class="button is-success" (click)="modalService.modalResultSubject.next(true); showModal = false;">{{modal?.confirmText || 'Confirm'}}</button>
+      <button class="button" (click)="modalService.modalResultSubject.next(false); showModal = false;">{{modal?.cancelText || 'Cancel'}}</button>
     </footer>
   </div>
 </div>

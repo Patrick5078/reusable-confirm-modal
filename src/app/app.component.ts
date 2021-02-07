@@ -19,7 +19,7 @@ export class AppComponent {
   showModal = false;
 
   ngOnInit() {
-    this.modalService.showConfirmModalEmitter.subscribe(modal => {
+    this.modalService.showConfirmModalSubject.subscribe(modal => {
       this.modal = modal;
       this.showModal = true
     });
