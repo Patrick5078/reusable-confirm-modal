@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { Modal, ModalService } from './shared/modal.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'reusable-confirm-modal';
+  
+  constructor(
+    public modalService: ModalService
+  ) {}
+  
+  modal?: Modal;
+  showModal = false;
+
+  ngOnInit() {
+    this.modalService.showConfirmModalEmitter.subscribe(modal => {
+      this.modal = modal;
+      this.showModal = true
+    });
+  }
 }
