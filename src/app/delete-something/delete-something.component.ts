@@ -15,7 +15,6 @@ export class DeleteSomethingComponent implements OnInit {
   isDeleted = false;
 
   ngOnInit() {
-    console.log("XX")
   }
 
   deleteSomething() {
